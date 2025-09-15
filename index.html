@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Errico - Creative Portfolio</title>
+    <title>Errico Sun - UX Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,38 +13,49 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
-            background: #fafafa;
         }
 
         /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            width: 100%;
+            background: rgba(45, 45, 45, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 2rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-weight: bold;
-            color: #2c3e50;
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -53,363 +65,380 @@
         }
 
         .nav-links a {
+            color: #fff;
             text-decoration: none;
-            color: #333;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: opacity 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #3498db;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #3498db;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+            opacity: 0.8;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
+            background: #000015;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            align-items: center;
+            text-align: center;
+            color: white;
             position: relative;
             overflow: hidden;
         }
 
+        .starfield-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
         .hero-content {
-            text-align: center;
-            color: white;
-            z-index: 2;
-            animation: fadeInUp 1s ease;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: profileGlow 2s ease-out 0.5s forwards;
+            opacity: 0;
+            transform: scale(0.8);
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(100, 255, 218, 0.2);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes profileGlow {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                box-shadow: 
+                    0 0 5px rgba(255, 255, 255, 0.1),
+                    0 0 10px rgba(100, 255, 218, 0.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 40px rgba(100, 255, 218, 0.2);
+            }
+        }
+
+        .greeting {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
         }
 
         .hero h1 {
             font-size: 4rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 300;
+            margin-bottom: 2rem;
             letter-spacing: -2px;
+            animation: starApproach 3s ease-out forwards;
+            transform: scale(0.1);
+            opacity: 0;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.4),
+                0 0 40px rgba(100, 255, 218, 0.3);
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+        @keyframes starApproach {
+            0% {
+                transform: scale(0.05) translateZ(0);
+                opacity: 0;
+                filter: blur(3px);
+                text-shadow: 
+                    0 0 2px rgba(255, 255, 255, 1),
+                    0 0 4px rgba(255, 255, 255, 0.8),
+                    0 0 6px rgba(100, 255, 218, 0.6);
+            }
+            20% {
+                opacity: 0.3;
+                filter: blur(2px);
+            }
+            40% {
+                transform: scale(0.3) translateZ(0);
+                opacity: 0.6;
+                filter: blur(1px);
+            }
+            60% {
+                transform: scale(0.6) translateZ(0);
+                opacity: 0.8;
+                filter: blur(0.5px);
+            }
+            80% {
+                transform: scale(0.9) translateZ(0);
+                opacity: 0.95;
+                filter: blur(0px);
+                text-shadow: 
+                    0 0 15px rgba(255, 255, 255, 0.9),
+                    0 0 25px rgba(255, 255, 255, 0.7),
+                    0 0 35px rgba(100, 255, 218, 0.5),
+                    0 0 45px rgba(100, 255, 218, 0.3);
+            }
+            100% {
+                transform: scale(1) translateZ(0);
+                opacity: 1;
+                filter: blur(0px);
+                text-shadow: 
+                    0 0 10px rgba(255, 255, 255, 0.8),
+                    0 0 20px rgba(255, 255, 255, 0.6),
+                    0 0 30px rgba(255, 255, 255, 0.4),
+                    0 0 40px rgba(100, 255, 218, 0.3);
+            }
+        }
+
+        .hero-description {
+            max-width: 500px;
+            font-size: 1.1rem;
+            line-height: 1.8;
             opacity: 0.9;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
+        .hero-description .highlight {
+            color: #64ffda;
             font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: starTwinkle 3s ease-in-out infinite;
+            text-shadow: 
+                0 0 5px rgba(100, 255, 218, 0.8),
+                0 0 10px rgba(100, 255, 218, 0.6),
+                0 0 15px rgba(100, 255, 218, 0.4);
         }
 
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+        @keyframes starTwinkle {
+            0%, 100% {
+                text-shadow: 
+                    0 0 5px rgba(100, 255, 218, 0.8),
+                    0 0 10px rgba(100, 255, 218, 0.6),
+                    0 0 15px rgba(100, 255, 218, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 
+                    0 0 8px rgba(100, 255, 218, 1),
+                    0 0 16px rgba(100, 255, 218, 0.8),
+                    0 0 24px rgba(100, 255, 218, 0.6),
+                    0 0 32px rgba(100, 255, 218, 0.4);
+                transform: scale(1.05);
+            }
         }
 
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 80px;
-            height: 80px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 60px;
-            height: 60px;
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #2c3e50;
-        }
-
-        .about-text p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: #666;
-        }
-
-        .about-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Skills Section */
-        .skills {
+        /* Traits Section */
+        .traits {
+            padding: 4rem 2rem;
             background: #f8f9fa;
-            padding: 5rem 2rem;
-        }
-
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
             text-align: center;
         }
 
+        .traits-container {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .trait {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        /* What I Do Section */
+        .skills {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: white;
+        }
+
         .skills h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 4rem;
+            color: #333;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
         }
 
         .skill-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 1rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
         }
 
-        .skill-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
+        .skill-icon:hover {
+            transform: translateY(-5px);
         }
 
-        .skill-card p {
-            color: #666;
-            line-height: 1.6;
+        .skill-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
         }
 
         /* Portfolio Section */
         .portfolio {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .portfolio h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #2c3e50;
+            padding: 6rem 2rem;
+            background: #f8f9fa;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .portfolio-item {
+        .project-card {
             background: white;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        .project-card:hover {
+            transform: translateY(-10px);
         }
 
-        .portfolio-image {
+        .project-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
             position: relative;
             overflow: hidden;
         }
 
-        .portfolio-image::after {
-            content: '🎨';
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .project-image.placeholder::before {
+            content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3rem;
-            color: rgba(255, 255, 255, 0.8);
+            width: 80%;
+            height: 60%;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
-        .portfolio-content {
-            padding: 2rem;
-        }
-
-        .portfolio-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .portfolio-content p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background: #e9ecef;
-            color: #495057;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #2c3e50;
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        .contact-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
+        .project-title {
+            font-size: 1.3rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
 
-        .contact-button:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a252f;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+        .project-meta {
+            color: #666;
+            font-size: 0.9rem;
             margin-bottom: 1rem;
         }
 
-        .social-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
+        .project-description {
+            color: #666;
+            line-height: 1.6;
         }
 
-        .social-links a:hover {
-            color: #3498db;
-            transform: translateY(-2px);
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .traits-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
         }
 
-        /* Animations */
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -421,300 +450,343 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about h2, .skills h2, .portfolio h2, .contact h2 {
-                font-size: 2rem;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scroll animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Floating elements - removed, replaced with starfield */
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Errico</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+        <div class="nav-left">
+            <div class="avatar">
+                <!-- 方法1: 使用在线图片 -->
+                <!-- <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Avatar"> -->
+                <!-- 方法2: 如果没有图片，显示首字母 -->
+                ES
+            </div>
         </div>
+        <ul class="nav-links">
+            <li><a href="#home">UX Works</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#arts">Arts</a></li>
+            <li><a href="#about">About Me</a></li>
+        </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
+    <section class="hero" id="home">
+        <canvas class="starfield-canvas" id="starfield"></canvas>
         <div class="hero-content">
-            <h1>Creative Designer</h1>
-            <p>Crafting digital experiences that inspire and engage</p>
-            <a href="#portfolio" class="cta-button">View My Work</a>
+            <!-- 个人照片（可选） -->
+            <div class="profile-photo">
+                <!-- 使用在线图片 -->
+                <!-- <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Errico Sun"> -->
+                <!-- 如果没有个人照片，可以注释掉整个 profile-photo div -->
+            </div>
+            
+            <div class="greeting">Hi</div>
+            <h1>I am Errico Sun</h1>
+            <p class="hero-description">
+                I am a UX and Product Designer based in New York.
+                I care about what users care about, and am passionate about
+                providing <span class="highlight">meaningful</span> and <span class="highlight">intuitive</span> service that can make life easier.
+            </p>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-content animate-on-scroll">
-            <div class="about-text">
-                <h2>About Me</h2>
-                <p>I'm a passionate creative designer with over 5 years of experience in crafting beautiful, functional digital experiences. My work focuses on the intersection of aesthetics and usability.</p>
-                <p>I believe that great design is not just about how something looks, but how it works. Every project is an opportunity to solve problems creatively and make a positive impact on people's lives.</p>
-                <p>When I'm not designing, you can find me exploring new technologies, sketching ideas, or seeking inspiration in nature and urban environments.</p>
-            </div>
-            <div class="about-image">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea'/%3E%3Cstop offset='100%25' style='stop-color:%23764ba2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23grad)'/%3E%3Ctext x='200' y='200' text-anchor='middle' dominant-baseline='middle' fill='white' font-size='60' font-family='Arial'%3E👨‍💻%3C/text%3E%3C/svg%3E" alt="About Image">
-            </div>
+    <!-- Traits Section -->
+    <section class="traits">
+        <div class="traits-container">
+            <div class="trait">Value Experience</div>
+            <div class="trait">Observer</div>
+            <div class="trait">Sympathetic</div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="skills-container">
-            <h2 class="animate-on-scroll">Skills & Services</h2>
-            <div class="skills-grid">
-                <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">🎨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Creating intuitive and beautiful user interfaces that enhance user experience and drive engagement.</p>
+    <section class="skills">
+        <h2>What I do</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-paint-brush"></i>
                 </div>
-                <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">💻</div>
-                    <h3>Web Development</h3>
-                    <p>Building responsive and performant websites using modern technologies and best practices.</p>
+                <div class="skill-title">UI/UX</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-lightbulb"></i>
                 </div>
-                <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">🎯</div>
-                    <h3>Brand Identity</h3>
-                    <p>Developing cohesive brand identities that tell your story and connect with your audience.</p>
+                <div class="skill-title">Product Design</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-palette"></i>
                 </div>
-                <div class="skill-card animate-on-scroll">
-                    <div class="skill-icon">📱</div>
-                    <h3>Mobile Design</h3>
-                    <p>Designing mobile-first experiences that work seamlessly across all devices and platforms.</p>
+                <div class="skill-title">Illustration</div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-star"></i>
                 </div>
+                <div class="skill-title">Design Direction</div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <h2 class="animate-on-scroll">Featured Work</h2>
+    <section class="portfolio">
         <div class="portfolio-grid">
-            <div class="portfolio-item animate-on-scroll">
-                <div class="portfolio-image"></div>
-                <div class="portfolio-content">
-                    <h3>E-commerce Platform</h3>
-                    <p>A modern e-commerce platform with intuitive user experience and seamless checkout process.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">UI Design</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                    </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- 方法1: 使用项目截图 -->
+                    <!-- <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop" alt="Hirebeat Redesign"> -->
+                    <!-- 方法2: 使用占位符（当前状态） -->
                 </div>
+                <h3 class="project-title">Redesigning for Hirebeat</h3>
+                <div class="project-meta">UX / UI 2023, SaaS Product</div>
+                <p class="project-description">
+                    A comprehensive redesign focusing on improving user experience 
+                    and streamlining the recruitment process for both employers and candidates.
+                </p>
             </div>
-            <div class="portfolio-item animate-on-scroll">
-                <div class="portfolio-image"></div>
-                <div class="portfolio-content">
-                    <h3>Mobile Banking App</h3>
-                    <p>A secure and user-friendly mobile banking application with biometric authentication.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Mobile Design</span>
-                        <span class="tag">React Native</span>
-                        <span class="tag">Security</span>
-                    </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <!-- 添加第二个项目的截图 -->
+                    <!-- <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="Marketing Assets"> -->
                 </div>
-            </div>
-            <div class="portfolio-item animate-on-scroll">
-                <div class="portfolio-image"></div>
-                <div class="portfolio-content">
-                    <h3>Brand Identity System</h3>
-                    <p>Complete brand identity redesign including logo, typography, and visual guidelines.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Branding</span>
-                        <span class="tag">Logo Design</span>
-                        <span class="tag">Guidelines</span>
-                    </div>
-                </div>
+                <h3 class="project-title">UX Focused Content and Marketing Assets for High-Profile Clients (OQA Theory)</h3>
+                <div class="project-meta">UX / Marketing 2023</div>
+                <p class="project-description">
+                    Creating engaging marketing materials and content strategies 
+                    that align with user experience principles for premium clients.
+                </p>
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="animate-on-scroll">
-            <h2>Let's Work Together</h2>
-            <p>Have a project in mind? I'd love to hear about it and discuss how we can bring your vision to life.</p>
-            <a href="mailto:hello@errico.com" class="contact-button">Get In Touch</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" title="LinkedIn">LinkedIn</a>
-            <a href="#" title="Twitter">Twitter</a>
-            <a href="#" title="Dribbble">Dribbble</a>
-            <a href="#" title="Behance">Behance</a>
-        </div>
-        <p>&copy; 2024 Errico. All rights reserved.</p>
-    </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Starfield Animation
+        class StarField {
+            constructor(canvas, options = {}) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.stars = [];
+                this.rafId = null;
+                this.lastTime = performance.now();
+                
+                // Settings
+                this.settings = {
+                    starCount: options.starCount || 300,
+                    speed: options.speed || 0.3,
+                    spread: options.spread || 2.0,
+                    focal: options.focal || 0.6,
+                    twinkle: options.twinkle || 0.3,
+                    trail: options.trail || 0.3,
+                    starSize: options.starSize || 0.5,
+                    bgColor: options.bgColor || '#000015',
+                    starColor: options.starColor || '#FFFFFF'
+                };
+                
+                this.init();
+            }
+            
+            parseColor(color) {
+                const c = color.trim().toLowerCase();
+                if (c[0] === '#') {
+                    const h = c.slice(1);
+                    if (h.length === 6) {
+                        const r = parseInt(h.slice(0, 2), 16);
+                        const g = parseInt(h.slice(2, 4), 16);
+                        const b = parseInt(h.slice(4, 6), 16);
+                        return { r, g, b, a: 1 };
+                    }
+                }
+                return { r: 0, g: 0, b: 0, a: 1 };
+            }
+            
+            resize() {
+                const parent = this.canvas.parentElement;
+                if (!parent) return;
+                
+                const w = Math.max(1, parent.clientWidth);
+                const h = Math.max(1, parent.clientHeight);
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                
+                this.canvas.width = Math.floor(w * dpr);
+                this.canvas.height = Math.floor(h * dpr);
+                this.canvas.style.width = w + 'px';
+                this.canvas.style.height = h + 'px';
+                
+                this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            
+            createStar() {
+                return {
+                    x: (Math.random() * 2 - 1) * this.settings.spread,
+                    y: (Math.random() * 2 - 1) * this.settings.spread,
+                    z: Math.random(),
+                    px: null,
+                    py: null,
+                    phase: Math.random() * Math.PI * 2,
+                    twinkle: 0.5 + Math.random() * 1.5,
+                    size: this.settings.starSize * (0.6 + Math.random() * 0.8)
+                };
+            }
+            
+            respawnStar(star) {
+                star.x = (Math.random() * 2 - 1) * this.settings.spread;
+                star.y = (Math.random() * 2 - 1) * this.settings.spread;
+                star.z = 1;
+                star.px = null;
+                star.py = null;
+                star.phase = Math.random() * Math.PI * 2;
+                star.twinkle = 0.5 + Math.random() * 1.5;
+                star.size = this.settings.starSize * (0.6 + Math.random() * 0.8);
+            }
+            
+            initStars() {
+                this.stars = [];
+                for (let i = 0; i < this.settings.starCount; i++) {
+                    this.stars.push(this.createStar());
+                }
+            }
+            
+            init() {
+                this.resize();
+                this.initStars();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.resize());
+            }
+            
+            animate() {
+                const now = performance.now();
+                const dt = Math.min(0.05, (now - this.lastTime) / 1000);
+                this.lastTime = now;
+                
+                const w = this.canvas.clientWidth;
+                const h = this.canvas.clientHeight;
+                const cx = w / 2;
+                const cy = h / 2;
+                
+                const bg = this.parseColor(this.settings.bgColor);
+                const sc = this.parseColor(this.settings.starColor);
+                
+                // Clear with trail effect
+                this.ctx.globalCompositeOperation = 'source-over';
+                const clearA = (1 - Math.min(0.98, Math.max(0, this.settings.trail))) * bg.a;
+                this.ctx.fillStyle = `rgba(${bg.r},${bg.g},${bg.b},${clearA})`;
+                this.ctx.fillRect(0, 0, w, h);
+                
+                this.ctx.globalCompositeOperation = 'lighter';
+                
+                const f = Math.min(w, h) * this.settings.focal;
+                
+                for (let i = 0; i < this.stars.length; i++) {
+                    const star = this.stars[i];
+                    
+                    // Move star
+                    star.z -= dt * this.settings.speed * 0.7;
+                    if (star.z <= 0.02) {
+                        this.respawnStar(star);
+                        continue;
+                    }
+                    
+                    // Project to 2D
+                    const invz = 1 / star.z;
+                    const x2d = star.x * f * invz + cx;
+                    const y2d = star.y * f * invz + cy;
+                    
+                    // Check bounds
+                    if (x2d < -20 || x2d > w + 20 || y2d < -20 || y2d > h + 20) {
+                        this.respawnStar(star);
+                        continue;
+                    }
+                    
+                    // Twinkle effect
+                    const tw = Math.max(0, Math.min(1, 0.65 + 
+                        this.settings.twinkle * 0.35 * Math.sin(star.phase + now * 0.0015 * star.twinkle)));
+                    
+                    const size = Math.max(0.3, star.size * invz * 0.9);
+                    const alpha = Math.min(1, (0.15 + tw * 0.9) * sc.a);
+                    
+                    // Draw trail
+                    if (star.px !== null && star.py !== null) {
+                        this.ctx.lineWidth = Math.min(3, size);
+                        this.ctx.strokeStyle = `rgba(${sc.r},${sc.g},${sc.b},${alpha})`;
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(x2d, y2d);
+                        const k = Math.min(1.5, 0.6 + this.settings.speed * 0.6);
+                        const tx = star.px + (x2d - star.px) * k;
+                        const ty = star.py + (y2d - star.py) * k;
+                        this.ctx.lineTo(tx, ty);
+                        this.ctx.stroke();
+                    }
+                    
+                    // Draw star
+                    this.ctx.fillStyle = `rgba(${sc.r},${sc.g},${sc.b},${alpha})`;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x2d, y2d, size * 0.5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    star.px = x2d;
+                    star.py = y2d;
+                }
+                
+                this.rafId = requestAnimationFrame(() => this.animate());
+            }
+            
+            destroy() {
+                if (this.rafId) {
+                    cancelAnimationFrame(this.rafId);
+                }
+                window.removeEventListener('resize', () => this.resize());
+            }
+        }
+        
+        // Initialize starfield
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('starfield');
+            if (canvas) {
+                new StarField(canvas, {
+                    starCount: 400,
+                    speed: 0.4,
+                    spread: 2.5,
+                    focal: 0.8,
+                    twinkle: 0.7,
+                    trail: 0.2,
+                    starSize: 0.6,
+                    bgColor: '#000015',
+                    starColor: '#FFFFFF'
                 });
+            }
+        });
+
+        // Add smooth scrolling and fade-in animations
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.project-card, .skill-item');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('fade-in');
+                }
             });
         });
 
-        // Navbar background on scroll
+        // Add scroll effect to navbar
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                navbar.style.background = 'rgba(45, 45, 45, 0.98)';
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
+                navbar.style.background = 'rgba(45, 45, 45, 0.95)';
             }
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Portfolio item hover effects
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Skill card interactions
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Add a subtle pulse animation
-                this.style.animation = 'none';
-                setTimeout(() => {
-                    this.style.animation = 'pulse 0.6s ease';
-                }, 10);
-            });
-        });
-
-        // Add pulse animation keyframes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero');
-            if (parallax) {
-                const speed = scrolled * 0.5;
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
-
-        // Add typing effect to hero text
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // Initialize typing effect after page load
-        window.addEventListener('load', () => {
-            const heroTitle = document.querySelector('.hero h1');
-            const heroSubtitle = document.querySelector('.hero p');
-            
-            setTimeout(() => {
-                typeWriter(heroTitle, 'Creative Designer', 150);
-            }, 500);
-            
-            setTimeout(() => {
-                typeWriter(heroSubtitle, 'Crafting digital experiences that inspire and engage', 50);
-            }, 2000);
         });
     </script>
 </body>
